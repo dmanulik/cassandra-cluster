@@ -1,0 +1,59 @@
+{
+  "by_org_group_department": {
+    "columns": {
+      "id": "uuid",
+      "fiscal_year": "smallint",
+      "organization_group_code": "int",
+      "organization_group": "text",
+      "department": "text",
+      "budget": "bigint"
+    },
+    "primary_key": "(organization_group_code), fiscal_year, id",
+    "clustering_order_by": "fiscal_year DESC",
+    "columns_mapping": {
+      "fiscal_year": "Fiscal Year",
+      "organization_group_code": "Organization Group Code",
+      "organization_group": "Organization Group",
+      "department": "Department",
+      "budget": "Budget"
+    }
+  },    
+  "by_character_costobject": {
+    "columns": {
+        "id": "uuid",
+        "fiscal_year": "smallint",
+        "character_code": "text",
+        "character": "text",
+        "cost_object": "map<text, text>",
+        "budget": "bigint"
+    },
+    "primary_key": "(character_code), fiscal_year, id",
+    "clustering_order_by": "fiscal_year DESC",
+    "columns_mapping": {
+      "fiscal_year": "Fiscal Year",
+      "character_code": "Character Code",
+      "character": "Character",
+      "cost_object": {"Object Code": "Object"},
+      "budget": "Budget"
+    }
+   },
+  "by_fundtype_fundname": {
+    "columns": {
+      "id": "uuid",
+      "fiscal_year": "smallint",
+      "fund_type_code": "text",
+      "fund_type": "text",
+      "fund": "map<text, text>",
+      "budget": "bigint"
+    },
+    "primary_key": "(fund_type_code), fiscal_year, id",
+    "clustering_order_by": "fiscal_year DESC",
+    "columns_mapping": {
+      "fiscal_year": "Fiscal Year",
+      "fund_type_code": "Fund Type Code",
+      "fund_type": "Fund Type",
+      "fund": {"Fund Code": "Fund"},
+      "budget": "Budget"
+    }
+  }
+}

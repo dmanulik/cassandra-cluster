@@ -1,0 +1,18 @@
+{
+  "connection_config": {
+    "contact_points": ["localhost"],
+    "port": 9042,
+    "max_schema_agreement_wait": 15,
+    "timeout": 5,
+    "default_consistency_level": "LOCAL_ONE"
+  },
+  "data": {
+    "datasets_location": "/opt/datasets",
+    "datasets": {
+      "sf_budget.csv": {
+        "delimeter": ",",
+        "keyspace_column": "Revenue or Spending"
+      }
+    }
+  }
+}

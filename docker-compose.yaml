@@ -1,0 +1,178 @@
+version: '3.7'
+services:
+  c01:
+    image: cassandra:3.11.4
+    environment:
+      CASSANDRA_BROADCAST_ADDRESS: "c01"
+      CASSANDRA_SEEDS: "c01,c02"
+    volumes:
+      - type: bind
+        source: ${CASSANDRA_HOME}/c01/etc/c01_cassandra.yaml
+        target: /etc/cassandra/cassandra.yaml
+      - type: bind
+        source: ${CASSANDRA_HOME}/c01/etc/c01_cassandra-rackdc.properties
+        target: /etc/cassandra/cassandra-rackdc.properties
+      - type: bind
+        source: ${CASSANDRA_HOME}/c01/etc/c01_jvm.options
+        target: /etc/cassandra/jvm.options
+      - type: bind
+        source: ${CASSANDRA_HOME}/c01/etc/c01_cassandra-env.sh
+        target: /etc/cassandra/cassandra-env.sh
+      - type: bind
+        source: ${CASSANDRA_HOME}/c01/varlib
+        target: /var/lib/cassandra
+    networks:
+      - onet
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        window: 5s
+  c02:
+    image: cassandra:3.11.4
+    environment:
+      CASSANDRA_BROADCAST_ADDRESS: "c02"
+      CASSANDRA_SEEDS: "c01,c02"
+    volumes:
+      - type: bind
+        source: ${CASSANDRA_HOME}/c02/etc/c02_cassandra.yaml
+        target: /etc/cassandra/cassandra.yaml
+      - type: bind
+        source: ${CASSANDRA_HOME}/c02/etc/c02_cassandra-rackdc.properties
+        target: /etc/cassandra/cassandra-rackdc.properties
+      - type: bind
+        source: ${CASSANDRA_HOME}/c02/etc/c02_jvm.options
+        target: /etc/cassandra/jvm.options
+      - type: bind
+        source: ${CASSANDRA_HOME}/c02/etc/c02_cassandra-env.sh
+        target: /etc/cassandra/cassandra-env.sh
+      - type: bind
+        source: ${CASSANDRA_HOME}/c02/varlib
+        target: /var/lib/cassandra
+    networks:
+      - onet
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        window: 5s
+  c03:
+    image: cassandra:3.11.4
+    environment:
+      CASSANDRA_BROADCAST_ADDRESS: "c03"
+      CASSANDRA_SEEDS: "c01,c02"
+    volumes:
+      - type: bind
+        source: ${CASSANDRA_HOME}/c03/etc/c03_cassandra.yaml
+        target: /etc/cassandra/cassandra.yaml
+      - type: bind
+        source: ${CASSANDRA_HOME}/c03/etc/c03_cassandra-rackdc.properties
+        target: /etc/cassandra/cassandra-rackdc.properties
+      - type: bind
+        source: ${CASSANDRA_HOME}/c03/etc/c03_jvm.options
+        target: /etc/cassandra/jvm.options
+      - type: bind
+        source: ${CASSANDRA_HOME}/c03/etc/c03_cassandra-env.sh
+        target: /etc/cassandra/cassandra-env.sh
+      - type: bind
+        source: ${CASSANDRA_HOME}/c03/varlib
+        target: /var/lib/cassandra
+    networks:
+      - onet
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        window: 5s
+  c04:
+      image: cassandra:3.11.4
+      environment:
+        CASSANDRA_BROADCAST_ADDRESS: "c04"
+        CASSANDRA_SEEDS: "c01,c02"
+      volumes:
+        - type: bind
+          source: ${CASSANDRA_HOME}/c04/etc/c04_cassandra.yaml
+          target: /etc/cassandra/cassandra.yaml
+        - type: bind
+          source: ${CASSANDRA_HOME}/c04/etc/c04_cassandra-rackdc.properties
+          target: /etc/cassandra/cassandra-rackdc.properties
+        - type: bind
+          source: ${CASSANDRA_HOME}/c04/etc/c04_jvm.options
+          target: /etc/cassandra/jvm.options
+        - type: bind
+          source: ${CASSANDRA_HOME}/c04/etc/c04_cassandra-env.sh
+          target: /etc/cassandra/cassandra-env.sh
+        - type: bind
+          source: ${CASSANDRA_HOME}/c04/varlib
+          target: /var/lib/cassandra
+      networks:
+        - onet
+      deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          window: 5s
+  c05:
+      image: cassandra:3.11.4
+      environment:
+        CASSANDRA_BROADCAST_ADDRESS: "c05"
+        CASSANDRA_SEEDS: "c01,c02"
+      volumes:
+        - type: bind
+          source: ${CASSANDRA_HOME}/c05/etc/c05_cassandra.yaml
+          target: /etc/cassandra/cassandra.yaml
+        - type: bind
+          source: ${CASSANDRA_HOME}/c05/etc/c05_cassandra-rackdc.properties
+          target: /etc/cassandra/cassandra-rackdc.properties
+        - type: bind
+          source: ${CASSANDRA_HOME}/c05/etc/c05_jvm.options
+          target: /etc/cassandra/jvm.options
+        - type: bind
+          source: ${CASSANDRA_HOME}/c05/etc/c05_cassandra-env.sh
+          target: /etc/cassandra/cassandra-env.sh
+        - type: bind
+          source: ${CASSANDRA_HOME}/c05/varlib
+          target: /var/lib/cassandra
+      networks:
+        - onet
+      deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          window: 5s
+  c06:
+      image: cassandra:3.11.4
+      environment:
+        CASSANDRA_BROADCAST_ADDRESS: "c06"
+        CASSANDRA_SEEDS: "c01,c02"
+      ports:
+        - "9042:9042"
+      volumes:
+        - type: bind
+          source: ${CASSANDRA_HOME}/c06/etc/c06_cassandra.yaml
+          target: /etc/cassandra/cassandra.yaml
+        - type: bind
+          source: ${CASSANDRA_HOME}/c06/etc/c06_cassandra-rackdc.properties
+          target: /etc/cassandra/cassandra-rackdc.properties
+        - type: bind
+          source: ${CASSANDRA_HOME}/c06/etc/c06_jvm.options
+          target: /etc/cassandra/jvm.options
+        - type: bind
+          source: ${CASSANDRA_HOME}/c06/etc/c06_cassandra-env.sh
+          target: /etc/cassandra/cassandra-env.sh
+        - type: bind
+          source: ${CASSANDRA_HOME}/c06/varlib
+          target: /var/lib/cassandra
+      networks:
+        - onet
+      deploy:
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          window: 5s
+
+
+networks:
+  onet:
+    driver: overlay
+    attachable: true
